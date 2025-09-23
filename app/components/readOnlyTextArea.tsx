@@ -5,11 +5,10 @@ function readOnlyTextArea() {
     return (
     <Textarea
       isReadOnly
-      className="max-w-xs"
-      defaultValue="Wait for bullet points here"
-      label="Description"
-      placeholder="Description"
+      className="max-w-3xl"
+      label="Wait for tailored bullet points here"
       variant="bordered"
+      size="lg"
     />
   );
 }

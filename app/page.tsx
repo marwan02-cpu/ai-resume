@@ -6,13 +6,13 @@ import ReadOnlyTextArea from "./components/readOnlyTextArea";
  
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold">
+    <div className="flex flex-col gap-24">
+      <h1 className="text-3xl font-bold self-center">
         Tailor your Resume with AI
       </h1>
-      <div className="flex">
-        <Textarea></Textarea>
-        <ReadOnlyTextArea></ReadOnlyTextArea>
+      <div className="flex justify-around gap-8">
+          <Textarea></Textarea>
+          <ReadOnlyTextArea></ReadOnlyTextArea>
       </div>
       <PrimaryButton></PrimaryButton>
     </div>

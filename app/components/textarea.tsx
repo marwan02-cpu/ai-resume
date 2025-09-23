@@ -5,11 +5,11 @@ function TextArea(){
     return (
     <Textarea
       isClearable
-      className="max-w-xs"
-      defaultValue="Enter the bullet points you want the resume tailored to"
-      label="Description"
+      className="max-w-3xl"
+      label="Enter the bullet points you want tailored here"
       placeholder="Description"
       variant="bordered"
+      size="lg"
     />
   );
 }
