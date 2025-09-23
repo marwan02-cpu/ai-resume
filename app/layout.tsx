@@ -1,11 +1,18 @@
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+// app/layout.tsx
+
+// globals.css includes @tailwind directives
+// adjust the path if necessary
+import "./main.css";
+import { Providers } from "./providers";
+
+export default function RootLayout({children}: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className='dark'>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
-  )
+  );
 }
