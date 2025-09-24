@@ -1,6 +1,5 @@
 'use server'
-import '../prompt/prompt'
-
+import '../../prompt/prompt'
 
 export async function SendPrompt() {
   var dataToSend : Prompt = {content: "Testing"}
@@ -12,11 +11,9 @@ export async function SendPrompt() {
     },
     body: JSON.stringify(dataToSend)
   });
-  
-  const promptResult = await data.json();
-  await GetPromptResult(promptResult);
-}
 
-export async function GetPromptResult(promptResult){
-    return promptResult
+  const promptResult = await data.json();
+  console.log(promptResult);
+
+  return promptResult
 }

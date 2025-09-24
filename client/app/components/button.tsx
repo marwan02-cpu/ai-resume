@@ -9,5 +9,4 @@ function PrimaryButton({ getData }){
     )
 }
 
-
 export default PrimaryButton;
