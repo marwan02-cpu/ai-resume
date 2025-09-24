@@ -1,0 +1,3 @@
+interface IPrompt {
+    content: string;
+}
