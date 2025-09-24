@@ -2,9 +2,10 @@ import "./main.css";
 import PrimaryButton from './components/button';
 import Textarea from './components/textarea';
 import ReadOnlyTextArea from "./components/readOnlyTextArea";
+import SendPrompt from "./actions/sendPrompt";
 
- 
 export default function Home() {
+
   return (
     <div className="flex flex-col gap-24">
       <h1 className="text-3xl font-bold self-center">
@@ -14,7 +15,7 @@ export default function Home() {
           <Textarea></Textarea>
           <ReadOnlyTextArea></ReadOnlyTextArea>
       </div>
-      <PrimaryButton></PrimaryButton>
+      <PrimaryButton getData={SendPrompt}></PrimaryButton>
     </div>
   )
 }
