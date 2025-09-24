@@ -13,7 +13,7 @@ export default function Home() {
       </h1>
       <div className="flex justify-around gap-8">
           <Textarea></Textarea>
-          <ReadOnlyTextArea></ReadOnlyTextArea>
+          <ReadOnlyTextArea promptResult={}></ReadOnlyTextArea>
       </div>
       <PrimaryButton getData={SendPrompt}></PrimaryButton>
     </div>

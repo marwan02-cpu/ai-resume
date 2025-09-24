@@ -1,10 +1,22 @@
 'use server'
-export default async function SendPrompt() {
+import '../prompt/prompt'
+
+
+export async function SendPrompt() {
+  var dataToSend : Prompt = {content: "Testing"}
+
   const data = await fetch('http://127.0.0.1:8000/prompt' , {
     method: "POST",
-    body: JSON.stringify({})
+     headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend)
   });
-  const posts = await data.json();
-  console.log("test")
-  console.log(posts);
+  
+  const promptResult = await data.json();
+  await GetPromptResult(promptResult);
+}
+
+export async function GetPromptResult(promptResult){
+    return promptResult
 }

@@ -2,32 +2,46 @@ from ollama import chat
 import requests
 import json
 
-url = "http://127.0.0.1:11434/api/chat"
 
-payload = {
-  "model": 'gemma3',  
-  "messages": [{'role': 'user', 'content': 'Hello, can you tailor resumes?'}], 
-}
+class OllamaClient:
+    def __init__(self, content):
+        self.content = content
+    
+    url = "http://127.0.0.1:11434/api/chat"
 
-response = requests.post(url, json=payload, stream=True)
+    def process_prompt(self):
 
-stream = chat(
-    model='gemma3',
-    messages=[{'role': 'user', 'content': 'Hello, can you tailor resumes?'}],
-    stream=True,
-)
+      payload = self.generate_payload()
 
-if response.status_code == 200:
-    print("Streaming response from Ollama:")
-    for line in response.iter_lines(decode_unicode=True):
-        if line: 
-            try:
-                json_data = json.loads(line)
-                if "message" in json_data and "content" in json_data["message"]:
-                    print(json_data["message"]["content"], end="")
-            except json.JSONDecodeError:
-                print(f"\nFailed to parse line: {line}")
-    print()
-else:
-    print(f"Error: {response.status_code}")
-    print(response.text)
+      response = requests.post(OllamaClient.url, json=payload, stream=True)
+
+      list_of_response = []
+
+      if response.status_code == 200:
+          print("Streaming response from Ollama:")
+          for line in response.iter_lines(decode_unicode=True):
+              if line: 
+                  try:
+                      json_data = json.loads(line)
+                      if "message" in json_data and "content" in json_data["message"]:
+                          #print(json_data["message"]["content"], end="")
+                          list_of_response.append(json_data["message"]["content"])
+                  except json.JSONDecodeError:
+                      print(f"\nFailed to parse line: {line}")
+          print()
+          return list_of_response
+      else:
+          print(f"Error: {response.status_code}")
+          print(response.text)
+
+
+    def generate_payload(self):
+      payload = {
+        "model": 'gemma3',  
+        "messages": [{'role': 'user', 'content': self.content}], 
+      }
+        
+      return payload
+
+
+

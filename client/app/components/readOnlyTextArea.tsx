@@ -1,7 +1,7 @@
 'use client'
 import {Textarea} from "@heroui/react";
 
-function readOnlyTextArea() {
+function readOnlyTextArea({promptResult}) {
     return (
     <Textarea
       isReadOnly
@@ -9,6 +9,7 @@ function readOnlyTextArea() {
       label="Wait for tailored bullet points here"
       variant="bordered"
       size="lg"
+      value={promptResult}
     />
   );
 }
