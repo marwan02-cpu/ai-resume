@@ -29,16 +29,20 @@ class OllamaClient:
                   except json.JSONDecodeError:
                       print(f"\nFailed to parse line: {line}")
           print()
-          return list_of_response
+          promptResponse = ''.join(list_of_response)
+          return promptResponse
       else:
           print(f"Error: {response.status_code}")
           print(response.text)
 
 
     def generate_payload(self):
+      system_prompt = ''' You are an expert at tailoring resumes. Always make sure to return
+        tailored points in bullet points. Do not use markdown.
+      '''
       payload = {
         "model": 'gemma3',  
-        "messages": [{'role': 'user', 'content': self.content}], 
+        "messages": [{'role': 'user', 'content': self.content}, {'role': 'system', 'content': system_prompt}], 
       }
         
       return payload

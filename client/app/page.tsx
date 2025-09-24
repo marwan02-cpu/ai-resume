@@ -6,7 +6,7 @@ import ReadOnlyTextArea from "./components/readOnlyTextArea";
 import { UsePrompt } from "./hooks/prompt/prompt";
 
 export default function Home() {
-  const { data, loading, error, callSendPrompt } = UsePrompt();
+  const { data, loading, error, callSendPrompt } = UsePrompt("");
 
   return (
     <div className="flex flex-col gap-24">

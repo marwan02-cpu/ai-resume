@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { SendPrompt } from '../../actions/prompt/sendPrompt'; 
 
-export function UsePrompt(){
+export function UsePrompt(prompt: string){
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ export function UsePrompt(){
     setLoading(true);
     setError(null);
     try {
-      const result = await SendPrompt();
+      const result = await SendPrompt(prompt);
       setData(result);
     } catch (err) {
       setError(err.message);

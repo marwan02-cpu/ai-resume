@@ -1,8 +1,8 @@
 'use server'
 import '../../prompt/prompt'
 
-export async function SendPrompt() {
-  var dataToSend : Prompt = {content: "Testing"}
+export async function SendPrompt(prompt: string) {
+  var dataToSend : Prompt = {content: prompt}
 
   const data = await fetch('http://127.0.0.1:8000/prompt' , {
     method: "POST",
