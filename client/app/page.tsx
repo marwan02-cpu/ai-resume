@@ -2,7 +2,7 @@ import "./main.css";
 import PrimaryButton from './components/button';
 import Textarea from './components/textarea';
 import ReadOnlyTextArea from "./components/readOnlyTextArea";
-import SendPrompt from "./actions/sendPrompt";
+import { SendPrompt, GetPromptResult } from "./actions/sendPrompt";
 
 export default function Home() {
 
