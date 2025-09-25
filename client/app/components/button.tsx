@@ -1,9 +1,9 @@
 'use client'
 
 import {Button} from '@heroui/button';
-function PrimaryButton({ getData }){
+function PrimaryButton({ action }){
     return (
-    <Button color="primary" className='self-center' onPress={getData}>
+    <Button color="primary" className='self-center' onPress={action}>
       Tailor resume
     </Button>
     )

@@ -10,7 +10,6 @@ function readOnlyTextArea({promptResult}) {
       variant="bordered"
       size="lg"
       value={promptResult}
-      
     />
   );
 }

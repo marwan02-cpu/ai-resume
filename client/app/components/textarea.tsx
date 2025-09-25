@@ -1,7 +1,7 @@
 'use client'
 import {Textarea} from "@heroui/react";
 
-function TextArea(){
+function TextArea({value, onValueChange}){
     return (
     <Textarea
       isClearable
@@ -10,6 +10,8 @@ function TextArea(){
       placeholder="Description"
       variant="bordered"
       size="lg"
+      value={value}
+      onValueChange={onValueChange}
     />
   );
 }

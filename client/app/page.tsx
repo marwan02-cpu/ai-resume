@@ -3,10 +3,11 @@ import "./main.css";
 import PrimaryButton from './components/button';
 import Textarea from './components/textarea';
 import ReadOnlyTextArea from "./components/readOnlyTextArea";
-import { UsePrompt } from "./hooks/prompt/prompt";
+import { useInput, usePrompt } from "./hooks/prompt/prompt";
 
 export default function Home() {
-  const { data, loading, error, callSendPrompt } = UsePrompt("");
+  const { inputData, handleChange } = useInput();
+  const { promptData, loading, error, callSendPrompt } = usePrompt(inputData);
 
   return (
     <div className="flex flex-col gap-24">
@@ -14,10 +15,10 @@ export default function Home() {
         Tailor your Resume with AI
       </h1>
       <div className="flex justify-around gap-8">
-          <Textarea></Textarea>
-          <ReadOnlyTextArea promptResult={data}></ReadOnlyTextArea>
+          <Textarea onValueChange={handleChange} value={inputData}></Textarea>
+          <ReadOnlyTextArea promptResult={promptData}></ReadOnlyTextArea>
       </div>
-      <PrimaryButton getData={callSendPrompt}></PrimaryButton>
+      <PrimaryButton action={callSendPrompt}></PrimaryButton>
     </div>
   )
 }

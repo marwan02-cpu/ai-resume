@@ -46,6 +46,3 @@ class OllamaClient:
       }
         
       return payload
-
-
-

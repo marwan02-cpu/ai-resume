@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import { SendPrompt } from '../../actions/prompt/sendPrompt'; 
 
-export function UsePrompt(prompt: string){
+export function usePrompt(prompt: string){
 
-  const [data, setData] = useState(null);
+  const [promptData, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,5 +21,17 @@ export function UsePrompt(prompt: string){
     }
   };
 
-  return { data, loading, error, callSendPrompt };
+  return { promptData, loading, error, callSendPrompt };
+}
+
+export function useInput(){
+
+  const [inputData, setTextareaValue] = useState('');
+
+  function handleChange(value: string){
+    setTextareaValue(value);
+    console.log(value)
+  }
+
+  return { inputData, handleChange };
 }
