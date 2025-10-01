@@ -1,48 +1,31 @@
 from ollama import chat
-import requests
-import json
-
+from ollama import ChatResponse
 
 class OllamaClient:
+    
+    resume = '''PUT RESUME INFO HERE '''
     def __init__(self, content):
         self.content = content
-    
-    url = "http://127.0.0.1:11434/api/chat"
-
     def process_prompt(self):
 
-      payload = self.generate_payload()
-
-      response = requests.post(OllamaClient.url, json=payload, stream=True)
-
-      list_of_response = []
-
-      if response.status_code == 200:
-          print("Streaming response from Ollama:")
-          for line in response.iter_lines(decode_unicode=True):
-              if line: 
-                  try:
-                      json_data = json.loads(line)
-                      if "message" in json_data and "content" in json_data["message"]:
-                          #print(json_data["message"]["content"], end="")
-                          list_of_response.append(json_data["message"]["content"])
-                  except json.JSONDecodeError:
-                      print(f"\nFailed to parse line: {line}")
-          print()
-          promptResponse = ''.join(list_of_response)
-          return promptResponse
-      else:
-          print(f"Error: {response.status_code}")
-          print(response.text)
-
+      response = self.generate_payload()
+      if response != None or response != '':
+         return response
 
     def generate_payload(self):
-      system_prompt = ''' You are an expert at tailoring resumes. Always make sure to return
-        tailored points in bullet points. Do not use markdown.
+      system_prompt = f''' 
+        You are an expert at tailoring resumes.
+        Here is the resume to tailor: {OllamaClient.resume}
+        Only return the tailored resume in your output.
+        Follow the same format given to you.
+        Make sure to include the key technologies from the job posting in the tailored resume.
+
+        Tailor the resume as if I did some of the work even if it's not mentioned in the resume.
+        At the end put which aspects you've tailored.
       '''
-      payload = {
-        "model": 'gemma3',  
-        "messages": [{'role': 'user', 'content': self.content}, {'role': 'system', 'content': system_prompt}], 
-      }
+      response: ChatResponse = chat(
+        model='gemma3',  
+        messages= [{'role': 'user', 'content': self.content}, {'role': 'system', 'content': system_prompt}], 
+      )
         
-      return payload
+      return response["message"]["content"]

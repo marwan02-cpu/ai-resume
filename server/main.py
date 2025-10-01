@@ -15,6 +15,7 @@ async def create_prompt(prompt: Prompt):
 
 def process_prompt(content):
     client = OllamaClient(content=content)
+    print(content)
     result = client.process_prompt()
-    print(result)
+    #print(result)
     return result
