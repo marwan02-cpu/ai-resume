@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-24 h-screen justify-center">
       <h1 className="self-center text-4xl font-extrabold">
-        Tailor your Resume with
+        Extract resume keywords with
         <span
           className="ml-2 bg-gradient-to-r from-teal-400 via-sky-500 to-purple-600 
                bg-clip-text text-transparent"
